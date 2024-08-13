@@ -35,7 +35,7 @@ export default function catalog(pageProp) {
   const product = pageProp.page_content.product;
   const customFields = product?.customFields;
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const [start, setStart] = useState(1);
 
@@ -186,6 +186,7 @@ export default function catalog(pageProp) {
       <HeadSEO title={product?.seo?.pageTitle == "" ? product?.name : product?.seo?.pageTitle} description={product?.seo?.metaDescription} image={null} />
       <div className="catalogs">
         <div className="container">
+
           <div className="appWrapper">
             <div className="appContainer">
               {/* section 1  */}
@@ -263,7 +264,7 @@ export default function catalog(pageProp) {
                       {/* left quantity  */}
                       <div className="realQucarleft">
                         <div onClick={() => {
-                          if (count > 0) {
+                          if (count > 1) {
                             setCount(count - 1);
                           }
                         }} className="releftshowd cursor-pointer">- </div>
@@ -334,6 +335,7 @@ export default function catalog(pageProp) {
                 </div>
 
               </div>
+
             </div>
           </div>
 
