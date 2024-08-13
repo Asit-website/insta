@@ -179,6 +179,13 @@ export default function catalog(pageProp) {
   //       });
   //     }
   //   });
+  const swiperRef = useRef(null); 
+
+  const goToSlide = (index) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index); 
+    }
+  };
 
 
   return (
@@ -196,6 +203,9 @@ export default function catalog(pageProp) {
                 <div className="appseleft">
 
                   <Swiper
+                    onSwiper={(swiper) => {
+                      swiperRef.current = swiper; // Assign the swiper instance to the ref
+                    }}
                     rewind={true}
                     navigation={{
                       nextEl: '.swiper-button-next',
@@ -219,6 +229,11 @@ export default function catalog(pageProp) {
                         <img src='./images/tesnsimg.png' alt="" />
                       </div>
                     </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="tes1wrap">
+                        <img src='./images/tesnsimg.png' alt="" />
+                      </div>
+                    </SwiperSlide>
                   </Swiper>
 
 
@@ -227,10 +242,10 @@ export default function catalog(pageProp) {
 
 
                   <div className="moreImages">
-                    <img src='./images/singl1.png' alt="" />
-                    <img src='./images/singl1.png' alt="" />
-                    <img src='./images/singl1.png' alt="" />
-                    <img src='./images/singl1.png' alt="" />
+                    <img src='./images/singl1.png' className="cursor-pointer" onClick={() => goToSlide(0)}  alt="" />
+                    <img src='./images/singl1.png' className="cursor-pointer" onClick={() => goToSlide(1)}  alt="" />
+                    <img src='./images/singl1.png' className="cursor-pointer" onClick={() => goToSlide(2)}  alt="" />
+                    <img src='./images/singl1.png' className="cursor-pointer" onClick={() => goToSlide(3)}  alt="" />
                   </div>
 
                 </div>
