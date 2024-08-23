@@ -269,16 +269,16 @@ export default function Navbar(props) {
                                 <li key={ii}>
                                   <a
                                     className="listmi"
-                                  //   href={
-                                  //     lss.link == null || lss.link == ""
-                                  //       ? "#"
-                                  //       : lss.link
-                                  //   }
-                                  //   target={
-                                  //     lss.linkType == "true"
-                                  //       ? "_blank"
-                                  //       : "_self"
-                                  //   }
+                                    href={
+                                      lss.link == null || lss.link == ""
+                                        ? "#"
+                                        : lss.link
+                                    }
+                                    target={
+                                      lss.linkType == "true"
+                                        ? "_blank"
+                                        : "_self"
+                                    }
                                   >
                                     <nav
                                       style={{
@@ -317,11 +317,11 @@ export default function Navbar(props) {
 
                                         }}
                                       >
-                                        <p style={{color:"black"}}>News</p>
-                                        <p style={{color:"black"}}>Case Study</p>
+                                        <p style={{color:"black"}}>{lss?.title}</p>
+                                        {/* <p style={{color:"black"}}>Case Study</p>
                                         <p style={{color:"black"}}>Events</p>
                                         <p style={{color:"black"}}>Products</p>
-                                        <p style={{color:"black"}}>QCO Orders</p>
+                                        <p style={{color:"black"}}>QCO Orders</p> */}
                                       </div>
 
                                       <img src="./images/rightimg.png" alt="" />
