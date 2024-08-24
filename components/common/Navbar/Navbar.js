@@ -21,12 +21,18 @@ import { signOut } from "next-auth/react";
 export default function Navbar(props) {
   const [menuToggel, setMenuToggel] = useState(false);
   const [authPopup, setAuthPopup] = useState(false);
+  const [authPopup1,setAuthPopup1] = useState(false)
   const refAuthPopup = useRef(null);
+  const refAuthPopup1 = useRef(null)
   const { data: userSession } = useSession();
   const router = useRouter();
   MenuToggel();
   useBodyOutsideClick(refAuthPopup, () => {
     setAuthPopup(false);
+  });
+
+  useBodyOutsideClick(refAuthPopup1, () => {
+    setAuthPopup1(false);
   });
 
   useEffect(() => {
@@ -118,6 +124,14 @@ export default function Navbar(props) {
                       <hr />
                     </div>
                     <div>
+                     
+                       <ul id="hjhj"  className={style.navItemsUser} style={{ display: "block" }}>
+                  <li>
+                    <span
+                      onClick={() => setAuthPopup1((value) => !value)}
+                      ref={refAuthPopup1}
+                    >
+                      {/* <GlobalAccount /> */}
                       <svg
                         width="25"
                         height="25"
@@ -130,12 +144,110 @@ export default function Navbar(props) {
                           fill="#444444"
                         />
                       </svg>
+                    </span>
+                    {authPopup1 == true ? (
+                      <div className={style.hdrAuthPopup}>
+                        <div className={style.apParent}>
+                          <div className={style.apLeft}>
+                            <span>
+                              Go to Account to <br /> download QR Code
+                            </span>
+                            <GlobalVerified />
+                          </div>
+                          <div className={style.apRight}>
+                            <ul>
+                              {userSession == null ||
+                              typeof userSession == "undefined" ? (
+                                <>
+                                  <li>
+                                    <Link href={"/cart"}>View Cart</Link>
+                                  </li>
+                                  <li>
+                                    <Link href={"/login"}>login</Link>
+                                  </li>
+                                  <li>
+                                    <Link href={"/create-account"}>
+                                      Create on account
+                                    </Link>
+                                  </li>
+                                </>
+                              ) : (
+                                <>
+                                  <li>
+                                    <Link href={"/cart"}>View Cart</Link>
+                                  </li>
+                                  <li>
+                                    <Link href={"/account/order"}>Orders</Link>
+                                  </li>
+                                  <li>
+                                    <Link href={"/account/account-details"}>
+                                      Account info
+                                    </Link>
+                                  </li>
+                                  <li>
+                                    <Link href={"/logout"}>Logout</Link>
+                                  </li>
+                                </>
+                              )}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </li>
+
+                  {userSession == null ? (
+                    <>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/cart"}>
+                          <GlobalCart /> View Cart
+                        </Link>
+                      </li>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/login"}>
+                          <GlobalLogin /> login
+                        </Link>
+                      </li>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/create-account"}>
+                          <GlobalAccount /> Create on account
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/cart"}>
+                          <GlobalCart /> View Cart
+                        </Link>
+                      </li>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/account/order"}>
+                          <GlobalOrder /> Orders
+                        </Link>
+                      </li>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/account/account-details"}>
+                          <GlobalAccount /> Account info
+                        </Link>
+                      </li>
+                      <li className={style.navUserLinkMobile}>
+                        <Link href={"/logout"}>
+                          <GlobalLogout /> Logout
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                </ul>
                     </div>
                     <div className="headline">
                       <hr />
                     </div>
                     <div>
-                      <svg
+                      {
+                        userSession == null || typeof userSession == "undefined" ? <Link href={"/cart"}><svg
                         width={25}
                         height={23}
                         viewBox="0 0 25 23"
@@ -153,7 +265,29 @@ export default function Navbar(props) {
                             <rect width={25} height={23} fill="white" />
                           </clipPath>
                         </defs>
-                      </svg>
+                      </svg></Link> :
+                        <Link href={"/cart"}> <svg
+                         width={25}
+                         height={23}
+                         viewBox="0 0 25 23"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg"
+                       >
+                         <g clipPath="url(#clip0_290_478)">
+                           <path
+                             d="M8.33333 4.05882H25L22.2222 16.2353H5.55556V2.70588H0V0H8.33333V4.05882ZM8.33333 6.76471V13.5294H20L21.5278 6.76471H8.33333ZM5.55556 23V20.2941H10.6944V23H5.55556ZM15.2778 23V20.2941H20.4167V23H15.2778Z"
+                             fill="#444444"
+                           />
+                         </g>
+                         <defs>
+                           <clipPath id="clip0_290_478">
+                             <rect width={25} height={23} fill="white" />
+                           </clipPath>
+                         </defs>
+                       </svg></Link>
+
+                      }
+                    
                     </div>
                     <div className="headline">
                       <hr />
@@ -293,8 +427,9 @@ export default function Navbar(props) {
                                         fontSize: "24px",
                                         borderBottom: "1.5px solid  #F07A40"
                                       }}
+                                      className="fosty"
                                     >
-                                      Resources
+                                      {ls.title}
                                     </nav>
 
                                     <div
@@ -316,15 +451,16 @@ export default function Navbar(props) {
                                           backgroundColor:"white"
 
                                         }}
+                                        className="sosty"
                                       >
-                                        <p style={{color:"black"}}>{lss?.title}</p>
+                                        <p className="hoving" style={{color:"black"}}>{lss?.title}</p>
                                         {/* <p style={{color:"black"}}>Case Study</p>
                                         <p style={{color:"black"}}>Events</p>
                                         <p style={{color:"black"}}>Products</p>
                                         <p style={{color:"black"}}>QCO Orders</p> */}
                                       </div>
 
-                                      <img src="./images/rightimg.png" alt="" />
+                                      <img className="sofa" src="./images/rightimg.png" alt="" />
 
                                     </div>
 
@@ -504,7 +640,7 @@ export default function Navbar(props) {
                   </div>
                 </ul>
 
-                <ul className={style.navItemsUser} style={{ display: "block" }}>
+                <ul id="jhjhj" className={style.navItemsUser} style={{ display: "block",opacity:"0" }}>
                   <li>
                     <span
                       onClick={() => setAuthPopup((value) => !value)}

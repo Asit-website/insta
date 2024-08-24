@@ -355,12 +355,20 @@ button {
   height: 54px;
   padding: 0px 15px;
 }
-
+.header_header__UxNqT .header_navItemsLeave1__Z0_2Y{
+  border-top: none !important;
+}
+.hoving:hover{
+   color: #f5901c !important;
+}
 .insta-certify-header-searchbar-menu svg {
   position: absolute;
   right: 20px;
 }
-
+.footer_footer__sN9yj .footer_footerItems__IUgXu .footer_footerItemsUL___vNAG li a:hover{
+  color: #f5901c !important;
+  transition: all .5s;
+}
 .insta-cartify-bbtn {
   display: flex;
   align-items: center;
@@ -1279,6 +1287,9 @@ button {
   .input_form input{
     width: 100%;
   }
+  #jhjhj{
+    opacity: 1 !important;
+  }
 }
 
 
@@ -1301,6 +1312,23 @@ button {
   .input_form{
     width: 100%;
     margin: 12px 0px;
+  }
+  .listmi{
+    width: auto !important;
+    height: auto !important;
+    transform: translateX(0px) !important;
+  }
+  .fosty{
+    width: auto !important;
+     display: none !important;
+  }
+  .sosty{
+    display: grid !important;
+    width: auto !important;
+    grid-template-columns: repeat(1,1fr) !important;
+  }
+  .sofa{
+    display: none !important;
   }
 }
 
